@@ -1,49 +1,23 @@
-const { Movie, Genre } = require('../models/index');
+const { Movie, Genre, Favorite } = require('../models/index');
 const { Op } = require('sequelize');
 class MovieController {
-  static async createMovie(req, res, next) {
-    try {
-      const { title, synopsis, trailerUrl, imgUrl, rating, genreId } = req.body;
-      let movie = await Movie.create({ title, synopsis, trailerUrl, imgUrl, rating, genreId });
-
-      res.status(201).json({
-        message: 'Success created movie',
-        movie,
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-
   static async allMovie(req, res, next) {
     try {
-      const { search } = req.query;
+      const { title } = req.query;
+      const condition = {
+        title: { [Op.iLike]: title ? `%${title}%` : '%%' },
+      };
 
-      let movies;
-      if (search) {
-        movies = await Movie.findAll({
-          include: [
-            {
-              model: Genre,
-              attributes: ['id', 'name'],
-            },
-          ],
-          where: {
-            title: { [Op.iLike]: `%${search}%` },
+      let movies = await Movie.findAll({
+        where: condition,
+        include: [
+          {
+            model: Genre,
+            attributes: ['id', 'name'],
           },
-          order: [['createdAt', 'DESC']],
-        });
-      } else {
-        movies = await Movie.findAll({
-          include: [
-            {
-              model: Genre,
-              attributes: ['id', 'name'],
-            },
-          ],
-          order: [['createdAt', 'DESC']],
-        });
-      }
+        ],
+        order: [['createdAt', 'DESC']],
+      });
 
       res.status(200).json({
         message: 'Success read movies',
@@ -57,7 +31,14 @@ class MovieController {
   static async showMovie(req, res, next) {
     try {
       const { id } = req.params;
-      let movie = await Movie.findByPk(+id);
+      let movie = await Movie.findByPk(+id, {
+        include: [
+          {
+            model: Genre,
+            attributes: ['id', 'name'],
+          },
+        ],
+      });
 
       if (!movie) {
         throw { name: 'Not Found' };
@@ -69,40 +50,50 @@ class MovieController {
     }
   }
 
-  static async updateMovie(req, res, next) {
+  static async addFavorite(req, res, next) {
     try {
-      const { id } = req.params;
-      const { title, synopsis, trailerUrl, imgUrl, rating, genreId } = req.body;
+      const { movieId } = req.params;
 
-      let findMovie = await Movie.findByPk(+id);
+      const findMovie = await Movie.findByPk(+movieId);
 
       if (!findMovie) {
         throw { name: 'Not Found' };
       }
 
-      await Movie.update({ title, synopsis, trailerUrl, imgUrl, rating, genreId }, { where: { id } });
+      const findFavorite = await Favorite.findOne({
+        where: {
+          movieId,
+        },
+      });
 
-      res.status(200).json({
-        message: `Success updated movie : ${findMovie.title}`,
+      if (findFavorite) {
+        throw { name: 'addFavoriteUnique' };
+      }
+
+      const favorite = await Favorite.create({ movieId });
+
+      res.status(201).json({
+        message: 'Successfully added movie to favorites',
+        favorite,
       });
     } catch (error) {
       next(error);
     }
   }
 
-  static async deleteMovie(req, res, next) {
+  static async readFavorite(req, res, next) {
     try {
-      const { id } = req.params;
-      let movie = await Movie.findByPk(+id);
-      await Movie.destroy({ where: { id } });
-
-      if (!movie) {
-        throw { name: 'Not Found' };
-      }
-
+      const favorites = await Favorite.findAll({
+        include: [
+          {
+            model: Movie,
+            include: [{ model: Genre }],
+          },
+        ],
+      });
       res.status(200).json({
-        message: `${movie.title} success to delete`,
-        movie,
+        message: 'Success read your favorite movie',
+        favorites,
       });
     } catch (error) {
       next(error);

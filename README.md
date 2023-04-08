@@ -20,7 +20,7 @@ Simple Web Movies adalah sebuah aplikasi web sederhana yang menggunakan Vue.js s
 - Sequelize (ORM)
 - PostgreSQL
 
-## Cara Penggunaan
+## Cara Penggunaan Backend & Froetend
 
 - Clone repositori ini ke komputer Anda.
 - Buka terminal dan navigasi ke direktori root aplikasi.
@@ -28,8 +28,9 @@ Simple Web Movies adalah sebuah aplikasi web sederhana yang menggunakan Vue.js s
 - Buat database pada PostgreSQL, kemudian ubah konfigurasi database pada file /config/config.json.
 - Jalankan migrasi untuk membuat tabel pada database dengan menjalankan perintah npx sequelize-cli db:migrate.
 - Jalankan seed untuk mengisi tabel pada database dengan \* data dummy dengan menjalankan perintah npx sequelize-cli db:seed:all.
-- Jalankan server dengan menjalankan perintah npm start.
-  Buka browser dan akses http://localhost:4000 untuk melihat aplikasi.
+- Jalankan backend dengan menjalankan perintah nodemon app.js.
+  Buka imsomnia dan akses http://localhost:4000 untuk melihat aplikasi.
+- Jalankan frontend dengan npm install pada terminal lalu npm run dev
 
 ## Struktur Direktori
 
