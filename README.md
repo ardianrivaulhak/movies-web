@@ -10,7 +10,6 @@ Simple Web Movies adalah sebuah aplikasi web sederhana yang menggunakan Vue.js s
 
 - Menampilkan daftar film beserta detailnya
 - Menambahkan film baru
-- Mengedit dan menghapus film yang sudah ada
 - Pencarian film berdasarkan judul
 
 ## Teknologi yang Digunakan

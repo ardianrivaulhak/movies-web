@@ -22,7 +22,7 @@ export default {
     <div v-else>
       <router-link class="remove-text-decoration" :to="{ name: 'detailMovie', params: { movieId: movie.id } }">
         <div class="card rounded" style="background-color: white; border: none">
-          <img :src="movie.imgUrl" :alt="movie.title" class="rounded" />
+          <img :src="movie.imgUrl" :alt="movie.title" class="rounded" style="width: 22vh; height: 30vh" />
         </div>
       </router-link>
       <div>
