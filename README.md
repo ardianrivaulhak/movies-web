@@ -30,7 +30,7 @@ Simple Web Movies adalah sebuah aplikasi web sederhana yang menggunakan Vue.js s
 - Jalankan seed untuk mengisi tabel pada database dengan \* data dummy dengan menjalankan perintah npx sequelize-cli db:seed:all.
 - Jalankan backend dengan menjalankan perintah nodemon app.js.
   Buka imsomnia dan akses http://localhost:4000 untuk melihat aplikasi.
-- Jalankan frontend dengan npm install pada terminal lalu npm run dev
+- Jalankan frontend dengan npm install pada terminal lalu npm run dev dan askes http://localhost:8080 untuk melihat aplikasi
 
 ## Struktur Direktori
 
