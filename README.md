@@ -1,9 +1,9 @@
 # movies-web
 
-Let's create a simple web application about movies CRUD and search using JavaScript ORM Sequelize on the backend and Vue.js framework on the frontend.
+Let's create a simple web application about movies Read, Detail and search using JavaScript ORM Sequelize on the backend and Vue.js framework on the frontend.
 
 ```
-Simple Web Movies adalah sebuah aplikasi web sederhana yang menggunakan Vue.js sebagai frontend dan Express.js sebagai backend. Aplikasi ini memungkinkan pengguna untuk melakukan operasi Read, Detail) pada data film, serta melakukan pencarian film berdasarkan judul.
+Simple Web Movies adalah sebuah aplikasi web sederhana yang menggunakan Vue.js sebagai frontend dan Express.js sebagai backend. Aplikasi ini memungkinkan pengguna untuk melakukan operasi Read, Detail dan search pada data film, serta melakukan pencarian film berdasarkan judul.
 
 
 ## Fitur
@@ -20,7 +20,7 @@ Simple Web Movies adalah sebuah aplikasi web sederhana yang menggunakan Vue.js s
 - Sequelize (ORM)
 - PostgreSQL
 
-## Cara Penggunaan Backend & Froetend
+## Cara Penggunaan Backend & Frontend
 
 - Clone repositori ini ke komputer Anda.
 - Buka terminal dan navigasi ke direktori root aplikasi.
