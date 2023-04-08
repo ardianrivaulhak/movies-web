@@ -34,10 +34,11 @@ Simple Web Movies adalah sebuah aplikasi web sederhana yang menggunakan Vue.js s
 
 ## Struktur Direktori
 
-- /config: Konfigurasi database dan pengaturan lainnya.
-- /data: Data dummy untuk seed database.
-- /models: Model Sequelize.
-- /routes: Route Express.js.
-- /controllers: Controller Express.js.
-- /app.js: File entry point aplikasi.
+- /backend/config: Konfigurasi database dan pengaturan lainnya.
+- /backend/data: Data dummy untuk seed database.
+- /backend/models: Model Sequelize.
+- /backend/routes: Route Express.js.
+- /backend/controllers: Controller Express.js.
+- /backend/app.js: File entry point aplikasi.
+- /frontend/stores/useMovieStore.js: File entry point aplikasi
 ```
